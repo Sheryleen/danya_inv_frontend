@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react"; //use effect 90% of lifecycle methods built into one
+import { connect } from "react-redux";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Container, Row, Col } from "reactstrap";
+import Dashboard from "./components/Dashboard";
+import TopNav from "./components/TopNav";
+import { fetchAllProducts } from "./store/products/actions";
+import EditProductForm from "./components/EditProductForm";
+import AddProductForm from "./components/AddProductForm";
 
-function App() {
+//useEffect requires 2 arguments
+//1st argument should be a/k/a componentDidMount
+function App(props) {
+  useEffect(() => {
+    props.fetchAllProducts(); 
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className='App'>
+        <TopNav />
+        <Container fluid>
+          <Row>
+            <Col>
+              <Switch>
+                <Route exact path='/' component={Dashboard} />
+                <Route path='/products/:id' component={EditProductForm} />
+                <Route path='/products/:id' component={AddProductForm} /> }
+              </Switch>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    </Router>
   );
 }
 
-export default App;
+export default connect(null, { fetchAllProducts })(App);

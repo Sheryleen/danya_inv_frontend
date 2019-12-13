@@ -1,7 +1,16 @@
 import React from "react";
-import { Table, Button } from "reactstrap";
 import { connect } from "react-redux";
 import { removeProduct } from "../store/products/actions";
+import CategoryCard from "../components/CategoryCard";
+import {
+  Card,
+  Button,
+  CardTitle,
+  CardText,
+  Row,
+  Col,
+  Container
+} from "reactstrap";
 
 const Dashboard = props => {
   console.log("props", props);
@@ -9,7 +18,6 @@ const Dashboard = props => {
   let listOfProducts = props.products.map(product => (
     <tr>
       <th>{product.created_at}</th>
-      {/* <td>{appt.user_id}</td> */}
       <td>
         <Button
           onClick={() => props.history.push(`/products/${product.id}`)}
@@ -24,18 +32,47 @@ const Dashboard = props => {
     </tr>
   ));
   return (
-    <Table>
-      <thead>
-        <tr>
-          <th>Date/Time</th>
-          <th>sku#</th>
-          <th>item_name</th>
-          <th>description</th>
-          <th>quantity</th>
-        </tr>
-      </thead>
-      <tbody>{listOfProducts}</tbody>
-    </Table>
+    <Container>
+      <Row>
+        <Col>Hair Dyes</Col>
+      </Row>
+      <Row>
+        <Col sm='3'>
+          <Card body>
+            <CardTitle>Gold Dyes</CardTitle>
+            <CardText>Click for List of Products.</CardText>
+            <Button>View Inventory</Button>
+          </Card>
+        </Col>
+      </Row>
+      <Row>
+        <Col sm='3'>
+          <Card body>
+            <CardTitle>Red Dyes</CardTitle>
+            <CardText>Click for List of Products.</CardText>
+            <Button>View Inventory</Button>
+          </Card>
+        </Col>
+      </Row>
+      <Row>
+        <Col sm='3'>
+          <Card body>
+            <CardTitle>Copper Dyes</CardTitle>
+            <CardText>Click for List of Products</CardText>
+            <Button>View Inventory</Button>
+          </Card>
+        </Col>
+      </Row>
+      <Row>
+        <Col sm='3'>
+          <Card body>
+            <CardTitle>Equipment</CardTitle>
+            <CardText>Click for List of Products</CardText>
+            <Button>View Inventory</Button>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

@@ -31,6 +31,7 @@ export default (state = initialState, action) => {
         all: [...state.all, action.payload[0]]
       };
     case types.REMOVE_PRODUCT_SUCCESS:
+      console.log("action", action);
       return {
         ...state,
         //take array from payload give all then the deleted one

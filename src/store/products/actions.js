@@ -59,7 +59,7 @@ export const addProduct = newProduct => async dispatch => {
   }
 };
 
-export const removeProduct = id => async dispatch => {
+export const removeProduct = (id, history) => async dispatch => {
   dispatch({
     type: types.REMOVE_PRODUCT_PENDING
   });
@@ -69,6 +69,7 @@ export const removeProduct = id => async dispatch => {
       type: types.REMOVE_PRODUCT_SUCCESS,
       payload: response.data
     });
+    // history.push("/");
   } catch (err) {
     dispatch({
       type: types.REMOVE_PRODUCT_FAILED,
@@ -76,7 +77,7 @@ export const removeProduct = id => async dispatch => {
     });
   }
 };
-export const updateProduct = updatedProduct => async dispatch => {
+export const updateProduct = (updatedProduct, history) => async dispatch => {
   dispatch({
     type: types.UPDATE_PRODUCT_PENDING
   });
@@ -89,6 +90,7 @@ export const updateProduct = updatedProduct => async dispatch => {
       type: types.UPDATE_PRODUCT_SUCCESS,
       payload: response.data
     });
+    history.push("/");
   } catch (err) {
     dispatch({
       type: types.UPDATE_PRODUCT_FAILED,
